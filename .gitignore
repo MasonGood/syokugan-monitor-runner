@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+*.tmp
+.env
+.env.*
+.dev.vars
+.wrangler/
+node_modules/
+.superpowers/
+scheduler/wrangler.toml

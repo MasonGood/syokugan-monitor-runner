@@ -1,0 +1,113 @@
+name: Product monitor
+run-name: ${{ inputs.mode == 'monitor' && format('monitor {0}', inputs.slot_id || inputs.mode) || inputs.mode }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Execution mode
+        required: true
+        default: check
+        type: choice
+        options:
+          - check
+          - monitor
+          - test_notification
+      slot_id:
+        description: Optional scheduler correlation identifier
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: product-monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Validate inputs
+        env:
+          MODE: ${{ inputs.mode }}
+          SLOT_ID: ${{ inputs.slot_id }}
+        run: |
+          python3 - <<'PY'
+          import os, re
+          if os.environ["MODE"] not in {"check", "monitor", "test_notification"}:
+              raise SystemExit("Invalid mode")
+          if os.environ["MODE"] != "monitor" and os.environ["SLOT_ID"]:
+              raise SystemExit("Slot identifier is only valid in monitor mode")
+          if not re.fullmatch(r"[A-Za-z0-9_-]{0,80}", os.environ["SLOT_ID"]):
+              raise SystemExit("Invalid slot identifier")
+          PY
+
+      - name: Check out latest baseline
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Verify runner
+        run: |
+          python -B -m unittest discover -s tests -v
+          python tools/audit_public.py
+
+      - name: Read-only product check
+        if: ${{ inputs.mode == 'check' }}
+        run: python monitor.py --dry-run
+
+      - name: Check notification configuration
+        if: ${{ inputs.mode != 'check' }}
+        env:
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_AUTH_CODE: ${{ secrets.SMTP_AUTH_CODE }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: |
+          python - <<'PY'
+          import os
+          required = ("SMTP_USERNAME", "SMTP_AUTH_CODE", "EMAIL_TO")
+          if any(not os.environ.get(name, "").strip() for name in required):
+              raise SystemExit("Notification secrets incomplete")
+          print("Notification configuration present")
+          PY
+
+      - name: Monitor products
+        if: ${{ inputs.mode == 'monitor' }}
+        env:
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_AUTH_CODE: ${{ secrets.SMTP_AUTH_CODE }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          MONITOR_SECTIONS: hc1,hc3,hc7
+        run: python monitor.py
+
+      - name: Test notification
+        if: ${{ inputs.mode == 'test_notification' }}
+        env:
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_AUTH_CODE: ${{ secrets.SMTP_AUTH_CODE }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python monitor.py --test-notification
+
+      - name: Save baseline after successful monitoring
+        if: ${{ inputs.mode == 'monitor' }}
+        run: |
+          python tools/audit_public.py
+          if git diff --quiet -- data/state.json; then
+            echo "Baseline unchanged"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/state.json
+          git commit -m "chore: update public product baseline"
+          git push origin HEAD:main

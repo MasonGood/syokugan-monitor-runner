@@ -1,0 +1,16 @@
+name = "syokugan-scheduler"
+main = "worker.mjs"
+compatibility_date = "2026-08-28"
+
+[vars]
+DISPATCH_ENABLED = "false"
+GITHUB_REPOSITORY = "MasonGood/syokugan-monitor-runner"
+
+[triggers]
+crons = ["2,17,32,47 0-12,23 * * *", "2 13,15,17,19,21 * * *"]
+
+# Add a D1 binding named DB using the dedicated database during deployment.
+# Set GITHUB_TOKEN as a Cloudflare Secret. Never put its value in this file.
+
+[observability]
+enabled = true
