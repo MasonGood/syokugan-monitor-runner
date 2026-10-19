@@ -59,7 +59,7 @@ async function dispatch(env, row, deps) {
         ref: "main",
         inputs: { mode: "monitor", slot_id: row.slot_id },
       }),
-      redirect: "error",
+      redirect: "manual",
       signal: AbortSignal.timeout(20000),
     });
   } catch {
@@ -94,7 +94,7 @@ async function lookupRun(env, row, deps) {
     const response = await deps.fetch(url.toString(), {
       method: "GET",
       headers: headers(env),
-      redirect: "error",
+      redirect: "manual",
       signal: AbortSignal.timeout(20000),
     });
     if (!response.ok) throw new Error("Run reconciliation unavailable");
@@ -190,7 +190,12 @@ async function recover(env, deps) {
 }
 
 export async function handleScheduled(controller, env, overrides = {}) {
-  const deps = { now: Date.now, fetch, log: (entry) => console.log(JSON.stringify(entry)), ...overrides };
+  const deps = {
+    now: Date.now,
+    fetch: (url, options) => fetch(url, options),
+    log: (entry) => console.log(JSON.stringify(entry)),
+    ...overrides,
+  };
   if (env.DISPATCH_ENABLED !== "true") {
     return { status: "disabled" };
   }

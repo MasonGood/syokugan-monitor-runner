@@ -121,6 +121,79 @@ test("different scheduled minutes both dispatch", async (t) => {
   assert.equal(calls, 2);
 });
 
+test("dispatch uses a Cloudflare-supported non-following redirect mode", async (t) => {
+  const f = fixture(t);
+  f.deps.fetch = async (_url, options) => {
+    if (!["follow", "manual"].includes(options.redirect)) {
+      throw new TypeError("Unsupported Workers redirect mode");
+    }
+    assert.equal(options.redirect, "manual");
+    return new Response(null, { status: 204 });
+  };
+  const result = await handleScheduled(f.controller, f.env, f.deps);
+  assert.equal(result.status, "dispatched");
+  assert.equal(f.row("syokugan-29869127-day").status, "dispatched");
+});
+
+test("reconciliation supports Workers without following credential redirects", async (t) => {
+  const f = fixture(t);
+  const id = staleSlot(f, { status: "uncertain" });
+  f.deps.fetch = async (_url, options) => {
+    if (options.method === "GET") {
+      if (!["follow", "manual"].includes(options.redirect)) {
+        throw new TypeError("Unsupported Workers redirect mode");
+      }
+      assert.equal(options.redirect, "manual");
+      return Response.json({
+        total_count: 1,
+        workflow_runs: [{ id: 456, display_title: `monitor ${id}` }],
+      });
+    }
+    return new Response(null, { status: 204 });
+  };
+  await handleScheduled(f.controller, f.env, f.deps);
+  assert.equal(f.row(id).status, "dispatched");
+  assert.equal(f.row(id).github_run_id, "456");
+  assert.equal(f.row(id).attempts, 1);
+});
+
+test("a dispatch redirect remains uncertain and is not accepted", async (t) => {
+  const f = fixture(t);
+  f.deps.fetch = async (_url, options) => {
+    assert.equal(options.redirect, "manual");
+    return new Response(null, {
+      status: 302,
+      headers: { Location: "https://example.invalid/not-followed" },
+    });
+  };
+  const result = await handleScheduled(f.controller, f.env, f.deps);
+  assert.equal(result.status, "uncertain");
+  assert.equal(f.row("syokugan-29869127-day").error_code, "http_302");
+  assert.equal(f.row("syokugan-29869127-day").attempts, 1);
+});
+
+test("default fetch keeps the Workers receiver for dispatch and reconciliation", async (t) => {
+  const f = fixture(t);
+  const id = staleSlot(f, { status: "uncertain" });
+  t.mock.method(globalThis, "fetch", async function (_url, options) {
+    if (this !== undefined && this !== globalThis) {
+      throw new TypeError("Illegal invocation: incorrect this reference");
+    }
+    if (options.method === "GET") {
+      return Response.json({
+        total_count: 1,
+        workflow_runs: [{ id: 789, display_title: `monitor ${id}` }],
+      });
+    }
+    return new Response(null, { status: 204 });
+  });
+  const result = await handleScheduled(f.controller, f.env, f.deps);
+  assert.equal(result.status, "dispatched");
+  assert.equal(f.row(id).status, "dispatched");
+  assert.equal(f.row(id).github_run_id, "789");
+  assert.equal(f.row(id).attempts, 1);
+});
+
 test("disabled scheduler does not access missing bindings or dispatch", async () => {
   const result = await handleScheduled({}, { DISPATCH_ENABLED: "false" }, {
     log: () => {},
