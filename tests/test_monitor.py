@@ -9,6 +9,7 @@ import runpy
 import smtplib
 import sys
 import tempfile
+import threading
 import unittest
 from contextlib import redirect_stderr, redirect_stdout
 from unittest.mock import patch
@@ -35,12 +36,12 @@ LIST_7_URL = "https://syokugan-ohkoku.com/list-shohin.php?id=7"
 NEW_IMAGE_URL = "https://syokugan-ohkoku.com/images/new.png"
 
 NEW_LIST_HTML = """
-<html><body><div class="item-wrap">
+<div class="item-wrap">
   <div><a href="item.php?code=1001"><img class="item-icon"
     src="/images/existing.jpg"></a></div>
   <span class="item-webtitle">Existing &amp; Original</span>
   <b>2026-10-01</b>
-</div></body></html>
+</div>
 """
 PREORDER_LIST_HTML = """
 <div class="item-wrap-small">
@@ -129,18 +130,28 @@ BASELINE_STATE = {
     },
 }
 
+LIST_END = '<div class="item-wrap-dammy"></div></div></body></html>'
+
+
+def list_page(cards):
+    return '<!doctype html><html><body><div class="content-line">' + cards + LIST_END
+
 
 class HTTPBoundary:
     """Serve real HTML and image bytes at the external urlopen boundary."""
 
     def __init__(self):
         self.pages = {
-            LIST_1_URL: NEW_LIST_HTML,
-            LIST_3_URL: PREORDER_LIST_HTML,
-            LIST_7_URL: RESTOCK_LIST_HTML,
+            LIST_1_URL: list_page(NEW_LIST_HTML),
+            LIST_3_URL: list_page(PREORDER_LIST_HTML),
+            LIST_7_URL: list_page(RESTOCK_LIST_HTML),
             NEW_IMAGE_URL: b"\x89PNG\r\n\x1a\nsynthetic-test-image",
         }
         self.requests = []
+
+    def add_cards(self, url, cards):
+        assert self.pages[url].endswith(LIST_END)
+        self.pages[url] = self.pages[url].removesuffix(LIST_END) + cards + LIST_END
 
     def __call__(self, request, *, timeout):
         url = request.full_url
@@ -165,6 +176,9 @@ class SMTPBoundary:
         self.send_error = None
         self.login_error = None
         self.refused = {}
+        self.quit_error = None
+        self.close_error = None
+        self.closed = 0
 
     def __call__(self, host, port, *, context, timeout):
         self.connections.append((host, port))
@@ -174,6 +188,12 @@ class SMTPBoundary:
         return self
 
     def __exit__(self, *exc):
+        try:
+            self.quit()
+        except smtplib.SMTPServerDisconnected:
+            pass
+        finally:
+            self.close()
         return False
 
     def login(self, username, auth_code):
@@ -186,6 +206,16 @@ class SMTPBoundary:
             raise self.send_error
         self.messages.append(message)
         return self.refused
+
+    def quit(self):
+        if self.quit_error is not None:
+            raise self.quit_error
+        return 221, b"Bye"
+
+    def close(self):
+        self.closed += 1
+        if self.close_error is not None:
+            raise self.close_error
 
 
 class MonitorTestCase(unittest.TestCase):
@@ -286,6 +316,19 @@ class ProductParserTests(MonitorTestCase):
         )
         self.assertEqual(self.http.requests, [LIST_1_URL, LIST_3_URL, LIST_7_URL])
 
+    def test_complete_page_can_contain_multiple_product_list_groups(self):
+        groups = (
+            '<div class="content-line">' + NEW_LIST_HTML
+            + '<div class="item-wrap-dammy"></div></div>'
+            + '<div class="content-line">' + NEW_PRODUCT_HTML
+            + '<div class="item-wrap-dammy"></div></div>'
+        )
+        self.http.pages[LIST_1_URL] = "<html><body>" + groups + "</body></html>"
+
+        products = monitor.fetch_products(("hc1",))
+
+        self.assertEqual(set(products), {"hc1:1001", "hc1:2002"})
+
     def test_empty_list_cannot_replace_a_valid_baseline(self):
         before = self.seed_state()
         self.http.pages[LIST_3_URL] = "<html><body>Layout changed</body></html>"
@@ -295,6 +338,120 @@ class ProductParserTests(MonitorTestCase):
 
         self.assert_state_unchanged(before)
         self.assertEqual(self.smtp.connections, [])
+
+    def test_partial_nonempty_restock_page_cannot_clear_presence_state(self):
+        self.seed_state()
+        self.http.add_cards(LIST_7_URL, NEW_RESTOCK_HTML)
+        self.run_monitor()
+        before = self.state_file.read_bytes()
+        self.smtp.messages.clear()
+        complete = self.http.pages[LIST_7_URL]
+        cuts = [
+            complete.index(NEW_RESTOCK_HTML),
+            complete.index("Returning Figure"),
+            complete.index(NEW_RESTOCK_HTML) + len(NEW_RESTOCK_HTML),
+            complete.index("</body>"),
+        ]
+
+        for cut in cuts:
+            with self.subTest(cut=cut):
+                self.http.pages[LIST_7_URL] = complete[:cut]
+                with self.assertRaises(RuntimeError):
+                    self.run_monitor()
+                self.assert_state_unchanged(before)
+        self.http.pages[LIST_7_URL] = complete
+        self.run_monitor()
+        self.assertEqual(self.smtp.messages, [])
+
+    def test_complete_document_with_malformed_or_unenclosed_card_is_rejected(self):
+        before = self.seed_state()
+        malformed = [
+            NEW_RESTOCK_HTML.replace('class="item-webtitle"', 'class="renamed-title"'),
+            NEW_RESTOCK_HTML.replace("code=7002", "changed=7002"),
+            NEW_RESTOCK_HTML.replace("</div>", "", 1),
+            '<div class="item-wrap">' + NEW_RESTOCK_HTML + "</div>",
+        ]
+        pages = [list_page(RESTOCK_LIST_HTML + card) for card in malformed]
+        pages.append(list_page(RESTOCK_LIST_HTML) + NEW_RESTOCK_HTML)
+        for page in pages:
+            with self.subTest(page=page):
+                self.http.pages[LIST_7_URL] = page
+                with self.assertRaises(RuntimeError):
+                    self.run_monitor()
+                self.assert_state_unchanged(before)
+        self.assertEqual(self.smtp.connections, [])
+
+    def test_complete_known_empty_restock_list_can_clear_and_restore_presence(self):
+        self.seed_state()
+        self.http.pages[LIST_7_URL] = list_page("")
+
+        self.run_monitor()
+        self.assertEqual(self.read_state()["active_restock_codes"], [])
+        self.assertEqual(self.smtp.messages, [])
+        self.run_monitor()
+        self.http.pages[LIST_7_URL] = list_page(RESTOCK_LIST_HTML)
+        self.run_monitor()
+        self.run_monitor()
+
+        self.assertEqual(len(self.smtp.messages), 1)
+        self.assertIn(
+            "Existing Restock", self.smtp.messages[0].get_body(("plain",)).get_content()
+        )
+        self.assertEqual(self.read_state()["active_restock_codes"], ["7001"])
+
+    def test_unknown_empty_layout_is_not_treated_as_empty_restock_list(self):
+        before = self.seed_state()
+        self.http.pages[LIST_7_URL] = (
+            '<html><body><div class="content-line">Unexpected layout</div></body></html>'
+        )
+        with self.assertRaises(RuntimeError):
+            self.run_monitor()
+        self.assert_state_unchanged(before)
+        self.assertEqual(self.smtp.connections, [])
+
+    def test_empty_list_shell_must_be_inside_open_document_body(self):
+        before = self.seed_state()
+        shell = '<div class="content-line"><div class="item-wrap-dammy"></div></div>'
+        pages = [
+            shell + "<html><body></body></html>",
+            "<html><head>" + shell + "</head><body></body></html>",
+            "<html><body></body></html>" + shell,
+        ]
+        for index, page in enumerate(pages):
+            with self.subTest(case=index):
+                self.http.pages[LIST_7_URL] = page
+                with self.assertRaises(RuntimeError):
+                    self.run_monitor()
+                self.assert_state_unchanged(before)
+        self.assertEqual(self.smtp.connections, [])
+
+    def test_unknown_list_text_is_rejected_even_with_placeholders_or_valid_cards(self):
+        before = self.seed_state()
+        for cards in ("", RESTOCK_LIST_HTML):
+            with self.subTest(has_cards=bool(cards)):
+                self.http.pages[LIST_7_URL] = list_page(cards + "Unexpected list content")
+                with self.assertRaises(RuntimeError):
+                    self.run_monitor()
+                self.assert_state_unchanged(before)
+        self.assertEqual(self.smtp.connections, [])
+
+    def test_complete_large_list_shrink_still_notifies_new_restock(self):
+        state = copy.deepcopy(BASELINE_STATE)
+        for index in range(10):
+            product = {**state["last_snapshot"]["hc7:7001"], "code": f"old-{index}"}
+            state["last_snapshot"][f"hc7:old-{index}"] = product
+            state["active_restock_codes"].append(f"old-{index}")
+        self.seed_state(state)
+        self.http.pages[LIST_7_URL] = list_page(NEW_RESTOCK_HTML)
+
+        self.run_monitor()
+        self.run_monitor()
+
+        self.assertEqual(self.read_state()["active_restock_codes"], ["7002"])
+        self.assertEqual(len(self.smtp.messages), 1)
+        self.assertIn(
+            "Returning Figure", self.smtp.messages[0].get_body(("plain",)).get_content()
+        )
 
 
 class StateTransitionTests(MonitorTestCase):
@@ -323,7 +480,7 @@ class StateTransitionTests(MonitorTestCase):
         state = copy.deepcopy(BASELINE_STATE)
         state["known_codes"].append("historic-42")
         self.seed_state(state)
-        self.http.pages[LIST_1_URL] += NEW_PRODUCT_HTML
+        self.http.add_cards(LIST_1_URL, NEW_PRODUCT_HTML)
 
         status, output = self.run_monitor()
 
@@ -356,7 +513,7 @@ class StateTransitionTests(MonitorTestCase):
         state = copy.deepcopy(BASELINE_STATE)
         state["known_codes"].append("7002")
         self.seed_state(state)
-        self.http.pages[LIST_7_URL] += NEW_RESTOCK_HTML
+        self.http.add_cards(LIST_7_URL, NEW_RESTOCK_HTML)
 
         status, _ = self.run_monitor()
 
@@ -370,17 +527,17 @@ class StateTransitionTests(MonitorTestCase):
 
     def test_restock_disappearance_and_reappearance_notifies_once(self):
         self.seed_state()
-        self.http.pages[LIST_7_URL] += NEW_RESTOCK_HTML
+        self.http.add_cards(LIST_7_URL, NEW_RESTOCK_HTML)
         self.run_monitor()
         self.run_monitor()
         self.assertEqual(len(self.smtp.messages), 1)
 
-        self.http.pages[LIST_7_URL] = RESTOCK_LIST_HTML
+        self.http.pages[LIST_7_URL] = list_page(RESTOCK_LIST_HTML)
         self.run_monitor()
         self.assertEqual(self.read_state()["active_restock_codes"], ["7001"])
         self.assertEqual(len(self.smtp.messages), 1)
 
-        self.http.pages[LIST_7_URL] += NEW_RESTOCK_HTML
+        self.http.add_cards(LIST_7_URL, NEW_RESTOCK_HTML)
         self.run_monitor()
         self.assertEqual(len(self.smtp.messages), 2)
         self.assertEqual(self.read_state()["known_codes"], ["1001", "3001"])
@@ -404,7 +561,7 @@ class StateTransitionTests(MonitorTestCase):
         state = copy.deepcopy(BASELINE_STATE)
         del state["monitored_sections"]
         self.seed_state(state)
-        self.http.pages[LIST_7_URL] += NEW_RESTOCK_HTML
+        self.http.add_cards(LIST_7_URL, NEW_RESTOCK_HTML)
 
         self.run_monitor()
 
@@ -418,8 +575,8 @@ class StateTransitionTests(MonitorTestCase):
         del state["source_mode"]
         state["known_codes"] = ["1001"]
         self.seed_state(state)
-        self.http.pages[LIST_1_URL] += NEW_PRODUCT_HTML
-        self.http.pages[LIST_7_URL] += NEW_RESTOCK_HTML
+        self.http.add_cards(LIST_1_URL, NEW_PRODUCT_HTML)
+        self.http.add_cards(LIST_7_URL, NEW_RESTOCK_HTML)
 
         self.run_monitor()
 
@@ -433,8 +590,8 @@ class StateTransitionTests(MonitorTestCase):
         del state["source_mode"]
         state["known_codes"].append("2608231")
         self.seed_state(state)
-        self.http.pages[LIST_1_URL] += NEW_PRODUCT_HTML + MIGRATION_ALERT_HTML
-        self.http.pages[LIST_7_URL] += NEW_RESTOCK_HTML
+        self.http.add_cards(LIST_1_URL, NEW_PRODUCT_HTML + MIGRATION_ALERT_HTML)
+        self.http.add_cards(LIST_7_URL, NEW_RESTOCK_HTML)
 
         self.run_monitor()
         self.run_monitor()
@@ -467,7 +624,7 @@ class DryRunTests(MonitorTestCase):
 
     def test_dry_run_with_new_product_does_not_write_state_or_download_images(self):
         before = self.seed_state()
-        self.http.pages[LIST_1_URL] += NEW_PRODUCT_HTML
+        self.http.add_cards(LIST_1_URL, NEW_PRODUCT_HTML)
 
         status, output = self.run_monitor(["--dry-run"])
 
@@ -504,20 +661,110 @@ class DryRunTests(MonitorTestCase):
         self.assertFalse(args.test_notification)
 
 
+class StateValidationTests(MonitorTestCase):
+    def test_invalid_existing_state_cannot_send_or_replace_baseline(self):
+        invalid_states = [None, [], {}, {"initialized": False, "known_codes": []}]
+        mutations = [
+            ("initialized", 1),
+            ("known_codes", ["1001", 3001]),
+            ("known_codes", "1001,3001"),
+            ("known_codes", []),
+            ("active_restock_codes", [None]),
+            ("active_restock_codes", []),
+            ("monitored_sections", ["hc1", 7]),
+            ("monitored_sections", ["hc1"]),
+            ("source_mode", "unexpected_future_format"),
+            ("last_snapshot", []),
+        ]
+        for key, value in mutations:
+            state = copy.deepcopy(BASELINE_STATE)
+            state[key] = value
+            invalid_states.append(state)
+        for key in ("known_codes", "last_snapshot", "active_restock_codes"):
+            state = copy.deepcopy(BASELINE_STATE)
+            del state[key]
+            invalid_states.append(state)
+        for value in (None, [], {"code": 1001}, {
+            **BASELINE_STATE["last_snapshot"]["hc1:1001"], "code": "different",
+        }):
+            state = copy.deepcopy(BASELINE_STATE)
+            state["last_snapshot"]["hc1:1001"] = value
+            invalid_states.append(state)
+        self.http.add_cards(LIST_1_URL, NEW_PRODUCT_HTML)
+
+        for index, state in enumerate(invalid_states):
+            with self.subTest(case=index):
+                before = self.seed_state(state) if state is not None else self.seed_state({})
+                if state is None:
+                    self.state_file.write_text("null", encoding="utf-8")
+                    before = self.state_file.read_bytes()
+                with self.assertRaises(RuntimeError):
+                    self.run_monitor()
+                self.assert_state_unchanged(before)
+                self.assertEqual(self.smtp.connections, [])
+
+    def test_dry_run_also_rejects_corrupted_existing_state(self):
+        before = self.seed_state({})
+        with self.assertRaises(RuntimeError):
+            self.run_monitor(["--dry-run"])
+        self.assert_state_unchanged(before)
+        self.assertEqual(self.smtp.connections, [])
+
+    def test_legacy_snapshot_without_images_or_restock_tracking_can_migrate(self):
+        state = copy.deepcopy(BASELINE_STATE)
+        del state["source_mode"]
+        del state["monitored_sections"]
+        del state["active_restock_codes"]
+        for product in state["last_snapshot"].values():
+            del product["image_url"]
+        self.seed_state(state)
+
+        status, _ = self.run_monitor()
+
+        self.assertEqual(status, 0)
+        self.assertEqual(self.read_state(), BASELINE_STATE)
+        self.assertEqual(self.smtp.connections, [])
+
+
 class DeliverySafetyTests(MonitorTestCase):
     def setUp(self):
         super().setUp()
-        self.http.pages[LIST_1_URL] += NEW_PRODUCT_HTML
+        self.http.add_cards(LIST_1_URL, NEW_PRODUCT_HTML)
 
     def test_smtp_send_exception_does_not_advance_new_or_restock_state(self):
         before = self.seed_state()
-        self.http.pages[LIST_7_URL] += NEW_RESTOCK_HTML
+        self.http.add_cards(LIST_7_URL, NEW_RESTOCK_HTML)
         self.smtp.send_error = smtplib.SMTPDataError(554, b"Synthetic delivery failure")
 
         with self.assertRaises(smtplib.SMTPException):
             self.run_monitor()
 
         self.assert_state_unchanged(before)
+
+    def test_confirmed_delivery_is_not_replayed_after_quit_or_close_failure(self):
+        self.seed_state()
+        self.smtp.quit_error = smtplib.SMTPResponseException(500, b"Synthetic QUIT failure")
+        self.smtp.close_error = OSError("Synthetic close failure")
+
+        status, output = self.run_monitor()
+        self.run_monitor()
+
+        self.assertEqual(status, 0)
+        self.assertEqual(len(self.smtp.messages), 1)
+        self.assertEqual(self.read_state()["known_codes"], ["1001", "2002", "3001"])
+        self.assertGreater(self.smtp.closed, 0)
+        self.assert_no_sensitive_output(output)
+
+    def test_ambiguous_send_failure_remains_failure_even_if_quit_also_fails(self):
+        before = self.seed_state()
+        self.smtp.send_error = TimeoutError("Synthetic DATA response lost")
+        self.smtp.quit_error = smtplib.SMTPResponseException(500, b"Synthetic QUIT failure")
+
+        with self.assertRaises(TimeoutError):
+            self.run_monitor()
+
+        self.assert_state_unchanged(before)
+        self.assertGreater(self.smtp.closed, 0)
 
     def test_authentication_failure_is_safe_and_preserves_baseline(self):
         before = self.seed_state()
@@ -545,7 +792,7 @@ class DeliverySafetyTests(MonitorTestCase):
 
     def test_refused_recipient_result_raises_safe_error_without_advancing_state(self):
         before = self.seed_state()
-        self.http.pages[LIST_7_URL] += NEW_RESTOCK_HTML
+        self.http.add_cards(LIST_7_URL, NEW_RESTOCK_HTML)
         self.smtp.refused = {
             "unexpected-debug+owner@example.invalid": (
                 550,
@@ -577,6 +824,94 @@ class DeliverySafetyTests(MonitorTestCase):
         self.assertFalse(any(part.get_content_maintype() == "image" for part in message.walk()))
         self.assertEqual(self.read_state()["known_codes"], ["1001", "2002", "3001"])
         self.assert_no_sensitive_output(output)
+
+    def test_stalled_optional_images_cannot_delay_text_delivery_past_budget(self):
+        self.seed_state()
+        for index in range(10):
+            self.http.add_cards(LIST_1_URL, NEW_PRODUCT_HTML.replace(
+                "2002", f"extra-{index}"
+            ))
+        release_image = threading.Event()
+        image_started = threading.Event()
+        delivery_finished = threading.Event()
+        outcomes = []
+        image_requests = []
+
+        def stalled_image(request, *, timeout):
+            if request.full_url == NEW_IMAGE_URL:
+                image_requests.append(timeout)
+                image_started.set()
+                release_image.wait(2)
+                raise TimeoutError("Synthetic stalled image")
+            return self.http(request, timeout=timeout)
+
+        def run():
+            try:
+                outcomes.append(self.run_monitor())
+            except Exception as error:
+                outcomes.append(error)
+            finally:
+                delivery_finished.set()
+
+        with (
+            patch.object(monitor, "urlopen", stalled_image),
+            patch.object(monitor, "IMAGE_BUDGET_SECONDS", 0.03, create=True),
+            patch.object(monitor.time, "sleep"),
+        ):
+            runner = threading.Thread(target=run, daemon=True)
+            runner.start()
+            try:
+                self.assertTrue(image_started.wait(1))
+                self.assertTrue(
+                    delivery_finished.wait(0.5),
+                    "Optional image is still blocking SMTP and baseline persistence",
+                )
+                self.assertEqual(outcomes[0][0], 0)
+                self.assertEqual(len(self.smtp.messages), 1)
+                body = self.smtp.messages[0].get_body(("plain",)).get_content()
+                self.assertEqual(body.count("Brand New <Special>"), 11)
+                self.assertNotIn(
+                    "cid:", self.smtp.messages[0].get_body(("html",)).get_content()
+                )
+                self.assertIn("extra-9", self.read_state()["known_codes"])
+                self.assertLessEqual(image_requests[0], 5)
+            finally:
+                release_image.set()
+                runner.join(2)
+        self.assertFalse(runner.is_alive())
+
+    def test_oversized_image_is_omitted_without_blocking_delivery(self):
+        self.seed_state()
+        self.http.pages[NEW_IMAGE_URL] = b"x" * 1_000_001
+
+        status, _ = self.run_monitor()
+
+        self.assertEqual(status, 0)
+        self.assertEqual(len(self.smtp.messages), 1)
+        self.assertFalse(any(
+            part.get_content_maintype() == "image"
+            for part in self.smtp.messages[0].walk()
+        ))
+        self.assertIn("2002", self.read_state()["known_codes"])
+
+    def test_combined_image_limit_preserves_all_product_text(self):
+        self.seed_state()
+        self.http.pages[NEW_IMAGE_URL] = b"x" * 1_000_000
+        for index in range(6):
+            self.http.add_cards(
+                LIST_1_URL, NEW_PRODUCT_HTML.replace("2002", f"extra-{index}")
+            )
+
+        status, _ = self.run_monitor()
+
+        self.assertEqual(status, 0)
+        message = self.smtp.messages[0]
+        self.assertEqual(
+            message.get_body(("plain",)).get_content().count("Brand New <Special>"), 7
+        )
+        images = [part for part in message.walk() if part.get_content_maintype() == "image"]
+        self.assertEqual(sum(len(part.get_payload(decode=True)) for part in images), 5_000_000)
+        self.assertIn("extra-5", self.read_state()["known_codes"])
 
     def test_test_notification_never_modifies_existing_state(self):
         before = self.seed_state()
@@ -654,7 +989,7 @@ class RedactionTests(MonitorTestCase):
 
     def test_top_level_smtp_error_is_sanitized_and_preserves_state(self):
         before = self.seed_state()
-        self.http.pages[LIST_1_URL] += NEW_PRODUCT_HTML
+        self.http.add_cards(LIST_1_URL, NEW_PRODUCT_HTML)
         self.smtp.send_error = smtplib.SMTPDataError(
             554,
             (

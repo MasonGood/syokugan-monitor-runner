@@ -142,7 +142,7 @@ async function recover(env, deps) {
   const { results } = await env.DB.prepare(
     `SELECT * FROM dispatch_slots
      WHERE status IN ('pending', 'failed', 'uncertain') AND lease_until < ?
-     ORDER BY created_at LIMIT 3`,
+     ORDER BY lease_until, created_at, slot_id LIMIT 3`,
   ).bind(now).all();
   for (const stale of results) {
     const claimTime = deps.now();

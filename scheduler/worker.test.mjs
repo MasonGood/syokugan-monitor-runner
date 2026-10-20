@@ -5,7 +5,21 @@ import test from "node:test";
 import { handleScheduled, slotId } from "./worker.mjs";
 
 const DAY = "2,17,32,47 0-12,23 * * *";
+const NIGHT = "2 13,15,17,19,21 * * *";
 const START = 1792147620000;
+
+function* configuredEvents(start, end) {
+  for (let scheduledTime = start; scheduledTime <= end; scheduledTime += 60000) {
+    const date = new Date(scheduledTime);
+    const hour = date.getUTCHours();
+    const minute = date.getUTCMinutes();
+    if ((hour <= 12 || hour === 23) && [2, 17, 32, 47].includes(minute)) {
+      yield { cron: DAY, scheduledTime };
+    } else if ([13, 15, 17, 19, 21].includes(hour) && minute === 2) {
+      yield { cron: NIGHT, scheduledTime };
+    }
+  }
+}
 
 function fixture(t) {
   const sqlite = new DatabaseSync(":memory:");
@@ -473,4 +487,243 @@ test("the last allowed attempt is still reconciled before stopping recovery", as
   await handleScheduled(f.controller, f.env, f.deps);
   assert.equal(f.row(id).status, "dispatched");
   assert.equal(f.row(id).github_run_id, "9001");
+});
+
+for (const lookupFailure of ["none", "http", "network"]) {
+  test(`worker-created recovery backlog progresses on configured cadence with ${lookupFailure} lookup failure`, async (t) => {
+    const f = fixture(t);
+    let now = START + 5000;
+    f.deps.now = () => now;
+    const blockers = [60, 45, 30].map((minutes) => ({
+      cron: DAY, scheduledTime: START - minutes * 60000,
+    }));
+    const ambiguousIds = blockers.map(slotId);
+    const rejected = { cron: DAY, scheduledTime: START - 15 * 60000 };
+    const rejectedId = slotId(rejected);
+    const unsentId = slotId(f.controller);
+    const posts = [];
+    let lookups = 0;
+    let lookupUnavailable = lookupFailure !== "none";
+    let lateCorrelation = false;
+    f.deps.fetch = async (_url, options) => {
+      assert.equal(options.redirect, "manual");
+      if (options.method === "GET") {
+        lookups += 1;
+        if (lookupUnavailable) {
+          if (lookupFailure === "network") throw new Error("lookup response lost");
+          return new Response(null, { status: 503 });
+        }
+        return Response.json({
+          total_count: lateCorrelation ? 1 : 0,
+          workflow_runs: lateCorrelation
+            ? [{ id: 9002, display_title: `monitor ${ambiguousIds[0]}` }]
+            : [],
+        });
+      }
+      const id = JSON.parse(options.body).inputs.slot_id;
+      posts.push(id);
+      if (ambiguousIds.includes(id)) throw new Error("dispatch response lost");
+      return new Response(null, {
+        status: id === rejectedId && posts.filter((post) => post === id).length === 1
+          ? 429 : 204,
+      });
+    };
+    for (const controller of blockers) {
+      await handleScheduled(controller, f.env, f.deps);
+    }
+    now += 10000;
+    await handleScheduled(rejected, f.env, f.deps);
+    now += 10000;
+    // Crash after the worker's INSERT but before attempt authorization.
+    f.sqlite.exec(
+      `CREATE TEMP TRIGGER stop_dispatch BEFORE UPDATE OF attempts ON dispatch_slots
+       BEGIN SELECT RAISE(ABORT, 'simulated authorization failure'); END`,
+    );
+    try {
+      await assert.rejects(
+        handleScheduled(f.controller, f.env, f.deps),
+        /simulated authorization failure/,
+      );
+    } finally {
+      f.sqlite.exec("DROP TRIGGER stop_dispatch");
+    }
+    assert.equal(f.row(rejectedId).status, "failed");
+    assert.equal(f.row(rejectedId).attempts, 1);
+    assert.equal(f.row(unsentId).status, "pending");
+    assert.equal(f.row(unsentId).attempts, 0);
+    const originalOwners = [rejectedId, unsentId].map((id) => f.row(id).lease_owner);
+    const recoveredAt = new Map();
+    let ticks = 0;
+    const crons = new Set();
+    for (const controller of configuredEvents(START + 60000, START + 26 * 3600000)) {
+      now = controller.scheduledTime + 5000;
+      ticks += 1;
+      crons.add(controller.cron);
+      lateCorrelation = ticks > 4;
+      lookups = 0;
+      await handleScheduled(controller, f.env, f.deps);
+      assert.ok(lookups <= 3, "each tick reconciles at most three rows");
+      if (ticks === 1) {
+        assert.equal(lookups, 3);
+        assert.deepEqual(
+          [rejectedId, unsentId].map((id) => f.row(id).lease_owner),
+          originalOwners,
+          "the first batch must stay bounded to the three older rows",
+        );
+      }
+      if (ticks === 2) {
+        for (const [i, id] of [rejectedId, unsentId].entries()) {
+          assert.notEqual(
+            f.row(id).lease_owner, originalOwners[i],
+            "unresolved older rows must not monopolize the second recovery batch",
+          );
+        }
+        if (lookupUnavailable) {
+          assert.equal(f.row(rejectedId).status, "failed");
+          assert.equal(f.row(rejectedId).attempts, 1);
+          assert.equal(f.row(unsentId).status, "pending");
+          assert.equal(f.row(unsentId).attempts, 0);
+          assert.equal(posts.filter((id) => id === rejectedId).length, 1);
+          assert.equal(posts.filter((id) => id === unsentId).length, 0);
+        }
+        lookupUnavailable = false;
+      }
+      for (const id of [rejectedId, unsentId]) {
+        if (f.row(id).status === "dispatched" && !recoveredAt.has(id)) {
+          recoveredAt.set(id, { tick: ticks, time: now });
+        }
+      }
+    }
+    assert.deepEqual([...crons], [DAY, NIGHT]);
+    assert.ok(ticks > 60, "exercise a full recovery window at the configured cadence");
+    for (const [id, attempts] of [[rejectedId, 2], [unsentId, 1]]) {
+      assert.equal(f.row(id).status, "dispatched");
+      assert.equal(f.row(id).attempts, attempts);
+      assert.equal(posts.filter((post) => post === id).length, attempts);
+      assert.ok(recoveredAt.get(id).tick <= (lookupFailure === "none" ? 2 : 4));
+      assert.ok(recoveredAt.get(id).time - f.row(id).created_at < 86400000);
+    }
+    assert.equal(f.row(ambiguousIds[0]).status, "dispatched");
+    assert.equal(f.row(ambiguousIds[0]).github_run_id, "9002");
+    for (const id of ambiguousIds) {
+      assert.equal(f.row(id).attempts, 1);
+      assert.equal(posts.filter((post) => post === id).length, 1);
+    }
+    for (const id of ambiguousIds.slice(1)) {
+      assert.equal(f.row(id).status, "needs_attention");
+    }
+  });
+}
+
+test("recovery breaks equal lease deadlines by creation time and slot id", async (t) => {
+  const f = fixture(t);
+  for (const id of ["tie-c", "tie-b", "tie-a"]) {
+    staleSlot(f, { slot_id: id, status: "uncertain" });
+  }
+  staleSlot(f, {
+    slot_id: "older", status: "uncertain", created_at: START - 900001,
+  });
+  const reconciled = [];
+  f.deps.log = (entry) => {
+    if (entry.event === "dispatch_still_uncertain") reconciled.push(entry.slot_id);
+  };
+  f.deps.fetch = async (_url, options) => options.method === "GET"
+    ? Response.json({ total_count: 0, workflow_runs: [] })
+    : new Response(null, { status: 204 });
+  await handleScheduled(f.controller, f.env, f.deps);
+  assert.deepEqual(reconciled, ["older", "tie-a", "tie-b"]);
+  reconciled.length = 0;
+  await handleScheduled(
+    { cron: DAY, scheduledTime: START + 15 * 60000 },
+    f.env,
+    { ...f.deps, now: () => START + 15 * 60000 },
+  );
+  assert.deepEqual(reconciled, ["tie-c", "older", "tie-a"]);
+});
+
+test("concurrent duplicate ticks rotate recovery without duplicate retry POSTs", async (t) => {
+  const f = fixture(t);
+  const ambiguousIds = [0, 1, 2].map((i) => staleSlot(f, {
+    slot_id: `ambiguous-${i}`, status: "uncertain", created_at: START - 900001,
+  }));
+  const rejectedId = staleSlot(f, { slot_id: "rejected" });
+  const unsentId = staleSlot(f, { slot_id: "unsent", status: "pending", attempts: 0 });
+  const posts = [];
+  f.deps.fetch = async (_url, options) => {
+    if (options.method === "GET") {
+      return Response.json({ total_count: 0, workflow_runs: [] });
+    }
+    posts.push(JSON.parse(options.body).inputs.slot_id);
+    return new Response(null, { status: 204 });
+  };
+  for (const minutes of [0, 15]) {
+    const scheduledTime = START + minutes * 60000;
+    await Promise.all(Array.from({ length: 20 }, (_, i) => handleScheduled(
+      { cron: DAY, scheduledTime: scheduledTime + (i % 5) * 1000 },
+      f.env,
+      { ...f.deps, now: () => scheduledTime + 5000 },
+    )));
+  }
+  assert.equal(posts.length, 4);
+  assert.equal(new Set(posts).size, 4);
+  assert.ok(posts.includes(rejectedId));
+  assert.ok(posts.includes(unsentId));
+  assert.equal(f.row(rejectedId).status, "dispatched");
+  assert.equal(f.row(rejectedId).attempts, 2);
+  assert.equal(f.row(unsentId).status, "dispatched");
+  assert.equal(f.row(unsentId).attempts, 1);
+  for (const id of ambiguousIds) {
+    assert.equal(f.row(id).status, "uncertain");
+    assert.equal(f.row(id).attempts, 1);
+    assert.equal(posts.includes(id), false);
+  }
+});
+
+test("recovery stops retrying after the third rejected POST", async (t) => {
+  const f = fixture(t);
+  const id = staleSlot(f, { attempts: 2 });
+  let retryPosts = 0;
+  let lookups = 0;
+  f.deps.fetch = async (_url, options) => {
+    if (options.method === "GET") {
+      lookups += 1;
+      return Response.json({ total_count: 0, workflow_runs: [] });
+    }
+    if (JSON.parse(options.body).inputs.slot_id === id) {
+      retryPosts += 1;
+      return new Response(null, { status: 429 });
+    }
+    return new Response(null, { status: 204 });
+  };
+  await handleScheduled(f.controller, f.env, f.deps);
+  assert.equal(f.row(id).attempts, 3);
+  assert.equal(f.row(id).status, "failed");
+  await handleScheduled(
+    { cron: DAY, scheduledTime: START + 15 * 60000 },
+    f.env,
+    { ...f.deps, now: () => START + 15 * 60000 },
+  );
+  assert.equal(lookups, 2);
+  assert.equal(retryPosts, 1);
+  assert.equal(f.row(id).attempts, 3);
+  assert.equal(f.row(id).status, "needs_attention");
+});
+
+test("recovery will not retry a rejection after the one-day window", async (t) => {
+  const f = fixture(t);
+  const id = staleSlot(f, { created_at: START + 5000 - 86400000 - 1 });
+  let lookups = 0;
+  f.deps.fetch = async (_url, options) => {
+    if (options.method === "GET") {
+      lookups += 1;
+      return Response.json({ total_count: 0, workflow_runs: [] });
+    }
+    assert.notEqual(JSON.parse(options.body).inputs.slot_id, id);
+    return new Response(null, { status: 204 });
+  };
+  await handleScheduled(f.controller, f.env, f.deps);
+  assert.equal(lookups, 1);
+  assert.equal(f.row(id).attempts, 1);
+  assert.equal(f.row(id).status, "needs_attention");
+  assert.equal(f.row(id).error_code, "recovery_limit");
 });

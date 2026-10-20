@@ -21,6 +21,23 @@ The Product monitor workflow is manually dispatched with one of these modes:
 The default is `check`. All three modes share a concurrency group and check out
 the current `main` baseline when the job actually starts.
 
+Existing baselines are validated before comparing products. Invalid tracking
+state fails without sending mail or replacing the baseline; a genuinely absent
+state file still initializes without historical notifications. Legacy homepage
+baselines retain their intentional migration behavior.
+
+Full-list responses must have complete document and list-container structure,
+and every recognized product card must be complete. A restock list may become
+empty only when the known empty-list shell is present. Truncated or unrecognized
+pages fail without clearing prior restock presence.
+
+Optional email images share a 15-second wait budget. Each image has one request
+with a socket timeout of at most five seconds and a one-megabyte size limit;
+combined image data is capped at five megabytes. DNS or slow reads cannot hold
+the mail path beyond the shared budget. Missing images fall back to complete
+text and HTML without those images. Confirmed SMTP acceptance is retained even if
+QUIT or connection cleanup fails; actual send failures leave state unchanged.
+
 For notification modes, add repository Secrets named `SMTP_USERNAME`,
 `SMTP_AUTH_CODE`, and `EMAIL_TO`. The authorization code is a QQ SMTP app
 authorization code, not the account password. Never paste it into chat or commit
@@ -68,14 +85,18 @@ compare against the latest product baseline.
 Recovery is bounded to three POST attempts and one day; exhausted rows are
 retained as `needs_attention`. Even the last attempt is checked for an existing
 run before being marked for attention. Accepted rows are retained for 30 days.
+Each recovery batch handles at most three rows, ordered by their lease
+deadlines so renewed leases rotate checked rows behind waiting work. An
+unavailable lookup also rotates its row without authorizing a retry.
 
 Use `DISPATCH_ENABLED=false` while staging. Do not enable or change the legacy
 dispatch target until Secrets, a hosted check, a sample email, and real scheduled
 deduplication have been verified. Retain the former Worker version for rollback.
 
 Delivery still has practical limits: SMTP acceptance does not prove inbox
-delivery, and a process crash after SMTP acceptance but before saving the
-baseline can cause a repeat email. Workflow concurrency serializes jobs, but a
+delivery, and a process crash or failed state push after SMTP acceptance can
+cause a repeat email. SMTP and Git state updates are not one transaction.
+Workflow concurrency serializes jobs, but a
 new queued run can replace an older pending run; dispatch acceptance alone is
 not a successful check. Review failed Actions runs and D1
 `needs_attention` rows; no separate failure-alert service is configured.
