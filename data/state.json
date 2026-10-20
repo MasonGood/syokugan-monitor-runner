@@ -405,7 +405,11 @@
     "2610094",
     "2610104",
     "2610105",
-    "2610106"
+    "2610106",
+    "2610108",
+    "2610109",
+    "2610113",
+    "2610114"
   ],
   "active_restock_codes": [
     "2307025",
@@ -1136,6 +1140,38 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2610061",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2610061/icon_2610061.png"
+    },
+    "hc1:2610108": {
+      "code": "2610108",
+      "title": "ドラゴンクエスト ミニチュアフィギュアコレクション",
+      "release_date": "2027/01発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2610108",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2610108/icon_2610108.png"
+    },
+    "hc1:2610109": {
+      "code": "2610109",
+      "title": "ドラゴンクエスト 冒険の書コレクション 討伐モンスターフィギ",
+      "release_date": "2027/01発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2610109",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2610109/icon_2610109.png"
+    },
+    "hc1:2610113": {
+      "code": "2610113",
+      "title": "ドラゴンクエスト ミニパペットぬいぐるみコレクション2",
+      "release_date": "2027/01発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2610113",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2610113/icon_2610113.png"
+    },
+    "hc1:2610114": {
+      "code": "2610114",
+      "title": "ドラゴンクエスト ミニチュアスイーツフィギュアコレクション",
+      "release_date": "2027/01発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2610114",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2610114/icon_2610114.png"
     },
     "hc3:2609220": {
       "code": "2609220",
