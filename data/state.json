@@ -409,7 +409,8 @@
     "2610108",
     "2610109",
     "2610113",
-    "2610114"
+    "2610114",
+    "2610143"
   ],
   "active_restock_codes": [
     "2307025",
@@ -1308,6 +1309,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2610106",
       "section": "hc3",
       "image_url": "https://syokugan-ohkoku.com/shohin/2610106/icon_2610106.png"
+    },
+    "hc3:2610143": {
+      "code": "2610143",
+      "title": "ミッキー＆フレンズソフビパペットマスコット 〔2026/11/5締切〕",
+      "release_date": "2027/01発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2610143",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2610143/icon_2610143.png"
     },
     "hc7:2307025": {
       "code": "2307025",
