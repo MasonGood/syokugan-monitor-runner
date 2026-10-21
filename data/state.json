@@ -217,6 +217,7 @@
     "2607061",
     "2607063",
     "2607064",
+    "2607065",
     "2607068",
     "2607106",
     "2607107",
@@ -741,6 +742,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2607064",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607064/icon_2607064.png"
+    },
+    "hc1:2607065": {
+      "code": "2607065",
+      "title": "モンスターキバグミ",
+      "release_date": "2026/10/19発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2607065",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2607065/icon_2607065.png"
     },
     "hc1:2607112": {
       "code": "2607112",
