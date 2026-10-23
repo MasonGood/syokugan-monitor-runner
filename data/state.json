@@ -415,7 +415,8 @@
     "2610143",
     "2610150",
     "2610152",
-    "2610153"
+    "2610153",
+    "2610157"
   ],
   "active_restock_codes": [
     "2307025",
@@ -1354,6 +1355,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2610153",
       "section": "hc3",
       "image_url": "https://syokugan-ohkoku.com/shohin/2610153/icon_2610153.png"
+    },
+    "hc3:2610157": {
+      "code": "2610157",
+      "title": "ジョジョの奇妙な冒険ｽﾀｰﾀﾞｽﾄｸﾙｾｲﾀﾞｰｽ メタルブ 〔2026/11/11締切〕",
+      "release_date": "2027/02/15発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2610157",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2610157/icon_2610157.png"
     },
     "hc7:2307025": {
       "code": "2307025",
