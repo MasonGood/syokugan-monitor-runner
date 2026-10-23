@@ -411,7 +411,8 @@
     "2610109",
     "2610113",
     "2610114",
-    "2610143"
+    "2610143",
+    "2610150"
   ],
   "active_restock_codes": [
     "2307025",
@@ -1318,6 +1319,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2610143",
       "section": "hc3",
       "image_url": "https://syokugan-ohkoku.com/shohin/2610143/icon_2610143.png"
+    },
+    "hc3:2610150": {
+      "code": "2610150",
+      "title": "クレヨンしんちゃんmitamemo缶バッジ 〔2026/11/11締切〕",
+      "release_date": "2027/02発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2610150",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2610150/icon_2610150.png"
     },
     "hc7:2307025": {
       "code": "2307025",
