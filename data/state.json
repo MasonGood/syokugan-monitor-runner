@@ -413,7 +413,9 @@
     "2610113",
     "2610114",
     "2610143",
-    "2610150"
+    "2610150",
+    "2610152",
+    "2610153"
   ],
   "active_restock_codes": [
     "2307025",
@@ -1336,6 +1338,22 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2610150",
       "section": "hc3",
       "image_url": "https://syokugan-ohkoku.com/shohin/2610150/icon_2610150.png"
+    },
+    "hc3:2610152": {
+      "code": "2610152",
+      "title": "ﾓﾊﾞｲﾙｽﾃｯｶｰｺﾚｸｼｮﾝ ｱｲｶﾂｽﾀｰｽﾞ星々のProgress 〔2026/11/11締切〕",
+      "release_date": "2027/01/22発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2610152",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2610152/icon_2610152.png"
+    },
+    "hc3:2610153": {
+      "code": "2610153",
+      "title": "彩光キラキラカンバッジコレクション 忍たま乱太郎 かけつけ！ 〔2026/11/11締切〕",
+      "release_date": "2027/02/15発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2610153",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2610153/icon_2610153.png"
     },
     "hc7:2307025": {
       "code": "2307025",
