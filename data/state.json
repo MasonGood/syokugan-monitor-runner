@@ -105,6 +105,7 @@
     "2605105",
     "2605106",
     "2605107",
+    "2605115",
     "2605127",
     "2605128",
     "2605129",
@@ -183,6 +184,7 @@
     "2606159",
     "2606160",
     "2606161",
+    "2606162",
     "2606164",
     "2606165",
     "2606166",
@@ -243,12 +245,15 @@
     "2607150",
     "2607151",
     "2607153",
+    "2607154",
     "2607155",
     "2607157",
+    "2607158",
     "2607159",
     "2607162",
     "2607163",
     "2607164",
+    "2607166",
     "2607194",
     "2607229",
     "2607230",
@@ -263,6 +268,9 @@
     "2608007",
     "2608008",
     "2608009",
+    "2608010",
+    "2608011",
+    "2608012",
     "2608013",
     "2608105",
     "2608106",
@@ -277,6 +285,8 @@
     "2608115",
     "2608116",
     "2608117",
+    "2608124",
+    "2608126",
     "2608131",
     "2608132",
     "2608135",
@@ -336,6 +346,7 @@
     "2609045",
     "2609046",
     "2609047",
+    "2609048",
     "2609049",
     "2609073",
     "2609074",
@@ -416,7 +427,8 @@
     "2610150",
     "2610152",
     "2610153",
-    "2610157"
+    "2610157",
+    "2610159"
   ],
   "active_restock_codes": [
     "2307025",
@@ -484,6 +496,14 @@
     "hc7"
   ],
   "last_snapshot": {
+    "hc1:2605115": {
+      "code": "2605115",
+      "title": "星のカービィ カービィフレンズ６",
+      "release_date": "2026/11/30発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2605115",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2605115/icon_2605115.png"
+    },
     "hc1:2606003": {
       "code": "2606003",
       "title": "忍たま乱太郎 カスタムチャームビスケット の段",
@@ -491,14 +511,6 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2606003",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2606003/icon_2606003.png"
-    },
-    "hc1:2606015": {
-      "code": "2606015",
-      "title": "タキシードサムのおしゃれなおうち TUXEDOSAMROO",
-      "release_date": "2026/10/26発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2606015",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2606015/icon_2606015.png"
     },
     "hc1:2606039": {
       "code": "2606039",
@@ -539,14 +551,6 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2606076",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2606076/icon_2606076.png"
-    },
-    "hc1:2606084": {
-      "code": "2606084",
-      "title": "びっくらたまご ケロロ軍曹☆ ふろふちころりん",
-      "release_date": "2026/10/20発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2606084",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2606084/icon_2606084.png"
     },
     "hc1:2606151": {
       "code": "2606151",
@@ -603,6 +607,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2606161",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2606161/icon_2606161.png"
+    },
+    "hc1:2606162": {
+      "code": "2606162",
+      "title": "たまごっち カードホルダー",
+      "release_date": "2026/11/09発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2606162",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2606162/icon_2606162.png"
     },
     "hc1:2606164": {
       "code": "2606164",
@@ -740,14 +752,6 @@
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607021/icon_2607021.png"
     },
-    "hc1:2607064": {
-      "code": "2607064",
-      "title": "サンリオキャラクターズ ロリポップグミ",
-      "release_date": "2026/10/24発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2607064",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2607064/icon_2607064.png"
-    },
     "hc1:2607065": {
       "code": "2607065",
       "title": "モンスターキバグミ",
@@ -763,14 +767,6 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2607112",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607112/icon_2607112.png"
-    },
-    "hc1:2607119": {
-      "code": "2607119",
-      "title": "ふわふわ缶チャームｍｏｊｏｊｏｊｏ",
-      "release_date": "2026/10/26発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2607119",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2607119/icon_2607119.png"
     },
     "hc1:2607122": {
       "code": "2607122",
@@ -836,6 +832,14 @@
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607153/icon_2607153.png"
     },
+    "hc1:2607154": {
+      "code": "2607154",
+      "title": "にふぉるめーしょん 鬼滅の刃ディフォルメシールウエハース 其16",
+      "release_date": "2026/11/09発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2607154",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2607154/icon_2607154.png"
+    },
     "hc1:2607155": {
       "code": "2607155",
       "title": "にふぉるめーしょん 僕のヒーローアカデミア ウルトラシールウ",
@@ -851,6 +855,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2607157",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607157/icon_2607157.png"
+    },
+    "hc1:2607158": {
+      "code": "2607158",
+      "title": "ポケピース ウエハース～ピースなまいにち～",
+      "release_date": "2026/11/09発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2607158",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2607158/icon_2607158.png"
     },
     "hc1:2607159": {
       "code": "2607159",
@@ -884,6 +896,14 @@
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607164/icon_2607164.png"
     },
+    "hc1:2607166": {
+      "code": "2607166",
+      "title": "SGライダーエグズ02",
+      "release_date": "2026/11/09発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2607166",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2607166/icon_2607166.png"
+    },
     "hc1:2607230": {
       "code": "2607230",
       "title": "ドラゴンクエスト 伝説の魔王コレクタブルコイン",
@@ -915,6 +935,30 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2608009",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2608009/icon_2608009.png"
+    },
+    "hc1:2608010": {
+      "code": "2608010",
+      "title": "ハローキティ ひみつのROOM TOUR",
+      "release_date": "2026/12/14発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2608010",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2608010/icon_2608010.png"
+    },
+    "hc1:2608011": {
+      "code": "2608011",
+      "title": "ポチャッコのふんわりレシピ",
+      "release_date": "2026/12/21発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2608011",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2608011/icon_2608011.png"
+    },
+    "hc1:2608012": {
+      "code": "2608012",
+      "title": "SNOOPY Signscape",
+      "release_date": "2026/12/14発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2608012",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2608012/icon_2608012.png"
     },
     "hc1:2608013": {
       "code": "2608013",
@@ -963,6 +1007,22 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2608117",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2608117/icon_2608117.png"
+    },
+    "hc1:2608124": {
+      "code": "2608124",
+      "title": "petadoll HUNTER×HUNTER グリードアイラ",
+      "release_date": "2026/12/14発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2608124",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2608124/icon_2608124.png"
+    },
+    "hc1:2608126": {
+      "code": "2608126",
+      "title": "SNOOPY Antique Diorama Collect2",
+      "release_date": "2026/12/21発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2608126",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2608126/icon_2608126.png"
     },
     "hc1:2608132": {
       "code": "2608132",
@@ -1092,6 +1152,14 @@
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2609016/icon_2609016.png"
     },
+    "hc1:2609048": {
+      "code": "2609048",
+      "title": "ジョジョの奇妙な冒険 スターダストクルセイダ ース STAN",
+      "release_date": "2026/12/21発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2609048",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2609048/icon_2609048.png"
+    },
     "hc1:2609049": {
       "code": "2609049",
       "title": "今日はたのしい ひなまつり 〜春霞のしつらえ〜",
@@ -1195,6 +1263,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2610114",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2610114/icon_2610114.png"
+    },
+    "hc1:2610159": {
+      "code": "2610159",
+      "title": "ほねほねザウルスジュラシックワールド",
+      "release_date": "2026/11/17発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2610159",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2610159/icon_2610159.png"
     },
     "hc3:2610072": {
       "code": "2610072",
