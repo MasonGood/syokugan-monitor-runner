@@ -485,6 +485,7 @@
     "2606128",
     "2606138",
     "2607108",
+    "2607120",
     "2608180",
     "2608221",
     "2608239",
@@ -1871,6 +1872,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2607108",
       "section": "hc7",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607108/icon_2607108.png"
+    },
+    "hc7:2607120": {
+      "code": "2607120",
+      "title": "チョコエッグ（星のカービィ第２弾）",
+      "release_date": "2026/10/26発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2607120",
+      "section": "hc7",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2607120/icon_2607120.png"
     },
     "hc7:2608180": {
       "code": "2608180",
