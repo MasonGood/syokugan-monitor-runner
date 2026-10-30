@@ -484,6 +484,7 @@
     "2606004",
     "2606128",
     "2606138",
+    "2606161",
     "2607108",
     "2607120",
     "2608180",
@@ -1864,6 +1865,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2606138",
       "section": "hc7",
       "image_url": "https://syokugan-ohkoku.com/shohin/2606138/icon_2606138.png"
+    },
+    "hc7:2606161": {
+      "code": "2606161",
+      "title": "にゅ～！たまごっちフレンズ",
+      "release_date": "2026/11/02発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2606161",
+      "section": "hc7",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2606161/icon_2606161.png"
     },
     "hc7:2607108": {
       "code": "2607108",
