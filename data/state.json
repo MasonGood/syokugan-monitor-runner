@@ -490,7 +490,9 @@
     "2608180",
     "2608221",
     "2608239",
-    "2609179"
+    "2609179",
+    "2610019",
+    "2610160"
   ],
   "monitored_sections": [
     "hc1",
@@ -1897,6 +1899,22 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2609179",
       "section": "hc7",
       "image_url": "https://syokugan-ohkoku.com/shohin/2609179/icon_2609179.png"
+    },
+    "hc7:2610019": {
+      "code": "2610019",
+      "title": "クレヨンしんちゃん ゴロっと満足フィギュア〜おつやパーティー",
+      "release_date": "2026/11/05発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2610019",
+      "section": "hc7",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2610019/icon_2610019.png"
+    },
+    "hc7:2610160": {
+      "code": "2610160",
+      "title": "ポケモンCirculardioramacollection2",
+      "release_date": "2026/11/25発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2610160",
+      "section": "hc7",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2610160/icon_2610160.png"
     }
   }
 }
