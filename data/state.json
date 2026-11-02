@@ -269,6 +269,7 @@
     "2607165",
     "2607166",
     "2607167",
+    "2607170",
     "2607171",
     "2607172",
     "2607174",
@@ -1058,6 +1059,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2607167",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607167/icon_2607167.png"
+    },
+    "hc1:2607170": {
+      "code": "2607170",
+      "title": "サンリオキャラクターズ ぷぎゅみ",
+      "release_date": "2026/11/30発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2607170",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2607170/icon_2607170.png"
     },
     "hc1:2607171": {
       "code": "2607171",
