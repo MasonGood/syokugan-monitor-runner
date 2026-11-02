@@ -512,7 +512,6 @@
     "2605063",
     "2605152",
     "2605153",
-    "2605154",
     "2606004",
     "2606128",
     "2606138",
@@ -2115,14 +2114,6 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2605153",
       "section": "hc7",
       "image_url": "https://syokugan-ohkoku.com/shohin/2605153/icon_2605153.png"
-    },
-    "hc7:2605154": {
-      "code": "2605154",
-      "title": "ポケモン 和の窓 再販",
-      "release_date": "2026/06/16発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2605154",
-      "section": "hc7",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2605154/icon_2605154.png"
     },
     "hc7:2606004": {
       "code": "2606004",
