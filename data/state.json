@@ -18,6 +18,7 @@
     "2603114",
     "2603118",
     "2603119",
+    "2603120",
     "2603131",
     "2603132",
     "2603133",
@@ -267,6 +268,7 @@
     "2607164",
     "2607165",
     "2607166",
+    "2607167",
     "2607171",
     "2607172",
     "2607174",
@@ -529,6 +531,14 @@
     "hc7"
   ],
   "last_snapshot": {
+    "hc1:2603120": {
+      "code": "2603120",
+      "title": "アンパンマン くみたて☆がったいパズルカー",
+      "release_date": "2026/11/16発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2603120",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2603120/icon_2603120.png"
+    },
     "hc1:2604132": {
       "code": "2604132",
       "title": "ちいかわ キャラマグネッツ５",
@@ -1040,6 +1050,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2607166",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607166/icon_2607166.png"
+    },
+    "hc1:2607167": {
+      "code": "2607167",
+      "title": "祝！30しゅ～ねん！のぞいて発見！！ たまごっちグミ",
+      "release_date": "2026/11/16発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2607167",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2607167/icon_2607167.png"
     },
     "hc1:2607171": {
       "code": "2607171",
