@@ -238,6 +238,8 @@
     "2607107",
     "2607110",
     "2607112",
+    "2607113",
+    "2607114",
     "2607116",
     "2607117",
     "2607119",
@@ -930,6 +932,22 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2607112",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607112/icon_2607112.png"
+    },
+    "hc1:2607113": {
+      "code": "2607113",
+      "title": "CharmAid たまごっち",
+      "release_date": "2026/11/11発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2607113",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2607113/icon_2607113.png"
+    },
+    "hc1:2607114": {
+      "code": "2607114",
+      "title": "救急ばんそうこう たまごっち",
+      "release_date": "2026/11/11発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2607114",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2607114/icon_2607114.png"
     },
     "hc1:2607116": {
       "code": "2607116",
