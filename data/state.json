@@ -395,6 +395,7 @@
     "2609080",
     "2609081",
     "2609087",
+    "2609088",
     "2609089",
     "2609158",
     "2609159",
@@ -1548,6 +1549,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2609087",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2609087/icon_2609087.png"
+    },
+    "hc1:2609088": {
+      "code": "2609088",
+      "title": "バズコレ（ｍｏｊｏｊｏｊｏ２）",
+      "release_date": "2026/11/16発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2609088",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2609088/icon_2609088.png"
     },
     "hc1:2609159": {
       "code": "2609159",
