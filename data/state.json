@@ -236,6 +236,7 @@
     "2607068",
     "2607106",
     "2607107",
+    "2607110",
     "2607112",
     "2607116",
     "2607117",
@@ -281,6 +282,7 @@
     "2607183",
     "2607184",
     "2607194",
+    "2607222",
     "2607229",
     "2607230",
     "2607231",
@@ -385,6 +387,7 @@
     "2609074",
     "2609075",
     "2609076",
+    "2609077",
     "2609078",
     "2609079",
     "2609080",
@@ -912,6 +915,14 @@
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607065/icon_2607065.png"
     },
+    "hc1:2607110": {
+      "code": "2607110",
+      "title": "PERIHAPI! 肩ズンHug. Hello Kitty 2",
+      "release_date": "2026/12発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2607110",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2607110/icon_2607110.png"
+    },
     "hc1:2607112": {
       "code": "2607112",
       "title": "どうぶつの森 Happy Room2",
@@ -923,7 +934,7 @@
     "hc1:2607116": {
       "code": "2607116",
       "title": "トキメルズBOX！ トイ・ストーリー くれーんげーむ",
-      "release_date": "2026/12発売",
+      "release_date": "2026/12/21発売",
       "url": "https://syokugan-ohkoku.com/item.php?code=2607116",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607116/icon_2607116.png"
@@ -1159,6 +1170,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2607184",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607184/icon_2607184.png"
+    },
+    "hc1:2607222": {
+      "code": "2607222",
+      "title": "PEANUTSソフビパペットマスコット",
+      "release_date": "2026/12上旬発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2607222",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2607222/icon_2607222.png"
     },
     "hc1:2607230": {
       "code": "2607230",
@@ -1527,6 +1546,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2609076",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2609076/icon_2609076.png"
+    },
+    "hc1:2609077": {
+      "code": "2609077",
+      "title": "ゆらりん缶バッジ サンリオキャラクターズ",
+      "release_date": "2026/12/14発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2609077",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2609077/icon_2609077.png"
     },
     "hc1:2609078": {
       "code": "2609078",
