@@ -480,7 +480,8 @@
     "2610153",
     "2610157",
     "2610159",
-    "2611043"
+    "2611043",
+    "2611046"
   ],
   "active_restock_codes": [
     "2307025",
@@ -1782,6 +1783,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2611043",
       "section": "hc3",
       "image_url": "https://syokugan-ohkoku.com/shohin/2611043/icon_2611043.png"
+    },
+    "hc3:2611046": {
+      "code": "2611046",
+      "title": "初音ミクソフビパペットマスコット 〔2026/12/2締切〕",
+      "release_date": "2027/02発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611046",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611046/icon_2611046.png"
     },
     "hc7:2307025": {
       "code": "2307025",
