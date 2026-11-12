@@ -481,7 +481,10 @@
     "2610157",
     "2610159",
     "2611043",
-    "2611046"
+    "2611046",
+    "2611047",
+    "2611048",
+    "2611050"
   ],
   "active_restock_codes": [
     "2307025",
@@ -1783,6 +1786,30 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2611046",
       "section": "hc3",
       "image_url": "https://syokugan-ohkoku.com/shohin/2611046/icon_2611046.png"
+    },
+    "hc3:2611047": {
+      "code": "2611047",
+      "title": "キャラポトレ ジョジョの奇妙な冒険 黄金の風 -HITMAN 〔2026/11/30締切〕",
+      "release_date": "2027/02/08発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611047",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611047/icon_2611047.png"
+    },
+    "hc3:2611048": {
+      "code": "2611048",
+      "title": "ちょこぶろっくしーるサンエックスユニバースコレクション 〔2026/11/30締切〕",
+      "release_date": "2027/02/15発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611048",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611048/icon_2611048.png"
+    },
+    "hc3:2611050": {
+      "code": "2611050",
+      "title": "すらいどきゃんプリキュア Ｇｏ！プリンセスプリキュア＆魔法つ 〔2026/11/30締切〕",
+      "release_date": "2027/02/22発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611050",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611050/icon_2611050.png"
     },
     "hc7:2307025": {
       "code": "2307025",
