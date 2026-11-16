@@ -502,7 +502,14 @@
     "2611058",
     "2611059",
     "2611060",
-    "2611070"
+    "2611070",
+    "2611072",
+    "2611073",
+    "2611074",
+    "2611075",
+    "2611076",
+    "2611077",
+    "2611078"
   ],
   "active_restock_codes": [
     "2307025",
@@ -1795,6 +1802,62 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2611070",
       "section": "hc3",
       "image_url": "https://syokugan-ohkoku.com/shohin/2611070/icon_2611070.png"
+    },
+    "hc3:2611072": {
+      "code": "2611072",
+      "title": "ブックマークコレクション 新テニスの王子様 〔2026/12/8締切〕",
+      "release_date": "2027/02/23発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611072",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611072/icon_2611072.png"
+    },
+    "hc3:2611073": {
+      "code": "2611073",
+      "title": "モバイルステッカーコレクション豆しば 〔2026/12/8締切〕",
+      "release_date": "2027/02/23発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611073",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611073/icon_2611073.png"
+    },
+    "hc3:2611074": {
+      "code": "2611074",
+      "title": "モバイルステッカーコレクション 「みいつけた！」 〔2026/12/8締切〕",
+      "release_date": "2027/02/23発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611074",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611074/icon_2611074.png"
+    },
+    "hc3:2611075": {
+      "code": "2611075",
+      "title": "チケットライクコレクション 銀魂 〔2026/12/8締切〕",
+      "release_date": "2027/02/23発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611075",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611075/icon_2611075.png"
+    },
+    "hc3:2611076": {
+      "code": "2611076",
+      "title": "チケットライクコレクション Fate/Grand Order 〔2026/12/8締切〕",
+      "release_date": "2027/02/23発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611076",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611076/icon_2611076.png"
+    },
+    "hc3:2611077": {
+      "code": "2611077",
+      "title": "チケットライクコレクション つながる！刀剣乱舞ONLINE 〔2026/12/8締切〕",
+      "release_date": "2027/02/23発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611077",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611077/icon_2611077.png"
+    },
+    "hc3:2611078": {
+      "code": "2611078",
+      "title": "ブックマークコレクション 刀剣乱舞ONLINE 御伴散歩 V 〔2026/12/8締切〕",
+      "release_date": "2027/02/23発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611078",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611078/icon_2611078.png"
     },
     "hc7:2307025": {
       "code": "2307025",
