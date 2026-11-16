@@ -501,7 +501,8 @@
     "2611057",
     "2611058",
     "2611059",
-    "2611060"
+    "2611060",
+    "2611070"
   ],
   "active_restock_codes": [
     "2307025",
@@ -1786,6 +1787,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2611050",
       "section": "hc3",
       "image_url": "https://syokugan-ohkoku.com/shohin/2611050/icon_2611050.png"
+    },
+    "hc3:2611070": {
+      "code": "2611070",
+      "title": "ブックマークコレクション 忍たま乱太郎 かけつけ！おたすけ隊 〔2026/12/8締切〕",
+      "release_date": "2027/02/16発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611070",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611070/icon_2611070.png"
     },
     "hc7:2307025": {
       "code": "2307025",
