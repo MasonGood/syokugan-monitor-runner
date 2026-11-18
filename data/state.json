@@ -571,6 +571,7 @@
     "2608239",
     "2609179",
     "2610019",
+    "2610159",
     "2610160"
   ],
   "monitored_sections": [
@@ -2330,6 +2331,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2610019",
       "section": "hc7",
       "image_url": "https://syokugan-ohkoku.com/shohin/2610019/icon_2610019.png"
+    },
+    "hc7:2610159": {
+      "code": "2610159",
+      "title": "ほねほねザウルスジュラシックワールド",
+      "release_date": "2026/11/17発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2610159",
+      "section": "hc7",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2610159/icon_2610159.png"
     },
     "hc7:2610160": {
       "code": "2610160",
