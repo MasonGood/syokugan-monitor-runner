@@ -573,9 +573,12 @@
     "2608221",
     "2608239",
     "2609179",
+    "2609234",
     "2610019",
     "2610159",
-    "2610160"
+    "2610160",
+    "2610161",
+    "2611115"
   ],
   "monitored_sections": [
     "hc1",
@@ -1639,14 +1642,6 @@
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2609222/icon_2609222.png"
     },
-    "hc1:2609234": {
-      "code": "2609234",
-      "title": "ポケットモンスター テラリウムコレクション15再販",
-      "release_date": "2026/12/16発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2609234",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2609234/icon_2609234.png"
-    },
     "hc1:2610051": {
       "code": "2610051",
       "title": "ドラゴンクエスト ウェポンズコレクションVol.2",
@@ -1743,14 +1738,6 @@
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2610159/icon_2610159.png"
     },
-    "hc1:2610161": {
-      "code": "2610161",
-      "title": "ポケモン DecorativeFrameCollection",
-      "release_date": "2026/12/16発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2610161",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2610161/icon_2610161.png"
-    },
     "hc1:2611034": {
       "code": "2611034",
       "title": "サンリオじゃらキー２",
@@ -1774,14 +1761,6 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2611036",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2611036/icon_2611036.png"
-    },
-    "hc1:2611115": {
-      "code": "2611115",
-      "title": "ワドルディのおもちゃ工場（再販）",
-      "release_date": "2026/12/16発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2611115",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2611115/icon_2611115.png"
     },
     "hc3:2611043": {
       "code": "2611043",
@@ -1822,6 +1801,22 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2611050",
       "section": "hc3",
       "image_url": "https://syokugan-ohkoku.com/shohin/2611050/icon_2611050.png"
+    },
+    "hc3:2611059": {
+      "code": "2611059",
+      "title": "名探偵プリキュア！等身大タペストリー キュアアルカナ 〔2026/12/1締切〕",
+      "release_date": "2027/03発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611059",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611059/icon_2611059.png"
+    },
+    "hc3:2611060": {
+      "code": "2611060",
+      "title": "名探偵プリキュア！等身大タペストリー キュアアルカナ・シャド 〔2026/12/1締切〕",
+      "release_date": "2027/03発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611060",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611060/icon_2611060.png"
     },
     "hc3:2611070": {
       "code": "2611070",
@@ -2351,6 +2346,14 @@
       "section": "hc7",
       "image_url": "https://syokugan-ohkoku.com/shohin/2609179/icon_2609179.png"
     },
+    "hc7:2609234": {
+      "code": "2609234",
+      "title": "ポケットモンスター テラリウムコレクション15再販",
+      "release_date": "2026/12/16発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2609234",
+      "section": "hc7",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2609234/icon_2609234.png"
+    },
     "hc7:2610019": {
       "code": "2610019",
       "title": "クレヨンしんちゃん ゴロっと満足フィギュア〜おつやパーティー",
@@ -2374,6 +2377,22 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2610160",
       "section": "hc7",
       "image_url": "https://syokugan-ohkoku.com/shohin/2610160/icon_2610160.png"
+    },
+    "hc7:2610161": {
+      "code": "2610161",
+      "title": "ポケモン DecorativeFrameCollection",
+      "release_date": "2026/12/16発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2610161",
+      "section": "hc7",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2610161/icon_2610161.png"
+    },
+    "hc7:2611115": {
+      "code": "2611115",
+      "title": "ワドルディのおもちゃ工場（再販）",
+      "release_date": "2026/12/16発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611115",
+      "section": "hc7",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611115/icon_2611115.png"
     }
   }
 }
