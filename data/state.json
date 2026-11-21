@@ -113,7 +113,9 @@
     "2605108",
     "2605109",
     "2605110",
+    "2605111",
     "2605112",
+    "2605113",
     "2605114",
     "2605115",
     "2605116",
@@ -204,6 +206,7 @@
     "2606167",
     "2606169",
     "2606171",
+    "2606172",
     "2606173",
     "2606186",
     "2606187",
@@ -285,8 +288,11 @@
     "2607170",
     "2607171",
     "2607172",
+    "2607173",
     "2607174",
     "2607176",
+    "2607177",
+    "2607182",
     "2607183",
     "2607184",
     "2607185",
@@ -609,6 +615,22 @@
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2605109/icon_2605109.png"
     },
+    "hc1:2605111": {
+      "code": "2605111",
+      "title": "ガンダムアーティファクトPRO フルアーマー・ガンダム",
+      "release_date": "2026/12/14発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2605111",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2605111/icon_2605111.png"
+    },
+    "hc1:2605113": {
+      "code": "2605113",
+      "title": "ガンダムアーティファクトPRO 高機動型ザクⅡ（黒い三連星仕",
+      "release_date": "2026/12/14発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2605113",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2605113/icon_2605113.png"
+    },
     "hc1:2605114": {
       "code": "2605114",
       "title": "ピカチュウマスコット＆ビスケット ピカチュウだらけのホリデー",
@@ -760,6 +782,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2606171",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2606171/icon_2606171.png"
+    },
+    "hc1:2606172": {
+      "code": "2606172",
+      "title": "ウルトラマン ソフビパッケージチャーム＆チョコボーロ",
+      "release_date": "2026/12発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2606172",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2606172/icon_2606172.png"
     },
     "hc1:2606173": {
       "code": "2606173",
@@ -1001,6 +1031,14 @@
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607172/icon_2607172.png"
     },
+    "hc1:2607173": {
+      "code": "2607173",
+      "title": "サンエックスユニバース ラバークリップつきグミ",
+      "release_date": "2026/12発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2607173",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2607173/icon_2607173.png"
+    },
     "hc1:2607174": {
       "code": "2607174",
       "title": "ポケモンキッズ 30周年スペシャルvol.4編",
@@ -1016,6 +1054,22 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2607176",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607176/icon_2607176.png"
+    },
+    "hc1:2607177": {
+      "code": "2607177",
+      "title": "たまごっちパラダイス ツインウエハース",
+      "release_date": "2026/12/14発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2607177",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2607177/icon_2607177.png"
+    },
+    "hc1:2607182": {
+      "code": "2607182",
+      "title": "たまごっち すてっか～つき のりたまご～ご～！すなっく",
+      "release_date": "2026/12/14発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2607182",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2607182/icon_2607182.png"
     },
     "hc1:2607183": {
       "code": "2607183",
@@ -1201,6 +1255,14 @@
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2608132/icon_2608132.png"
     },
+    "hc1:2608139": {
+      "code": "2608139",
+      "title": "TVアニメ「魔法騎士レイアース」 ツインウエハース",
+      "release_date": "2026/12発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2608139",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2608139/icon_2608139.png"
+    },
     "hc1:2608140": {
       "code": "2608140",
       "title": "バトルスピリッツ ツインウエハース",
@@ -1216,6 +1278,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2608142",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2608142/icon_2608142.png"
+    },
+    "hc1:2608143": {
+      "code": "2608143",
+      "title": "MARVEL Infinity SAGA/カードソフトクッキ",
+      "release_date": "2026/12発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2608143",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2608143/icon_2608143.png"
     },
     "hc1:2608145": {
       "code": "2608145",
