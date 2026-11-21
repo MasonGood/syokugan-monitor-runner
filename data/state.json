@@ -575,7 +575,6 @@
     "2609179",
     "2609234",
     "2610019",
-    "2610159",
     "2610160",
     "2610161",
     "2611115"
@@ -586,14 +585,6 @@
     "hc7"
   ],
   "last_snapshot": {
-    "hc1:2604137": {
-      "code": "2604137",
-      "title": "チョコサプ ちいかわ２",
-      "release_date": "2026/11/23発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2604137",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2604137/icon_2604137.png"
-    },
     "hc1:2604138": {
       "code": "2604138",
       "title": "SMPグレートマジンガー",
@@ -617,22 +608,6 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2605109",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2605109/icon_2605109.png"
-    },
-    "hc1:2605110": {
-      "code": "2605110",
-      "title": "ガンダムアーティファクトPRO フルアーマー・ガンダム",
-      "release_date": "2026/11/23発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2605110",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2605110/icon_2605110.png"
-    },
-    "hc1:2605112": {
-      "code": "2605112",
-      "title": "ガンダムアーティファクトPRO 高機動型ザクⅡ（黒い三連星仕",
-      "release_date": "2026/11/23発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2605112",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2605112/icon_2605112.png"
     },
     "hc1:2605114": {
       "code": "2605114",
@@ -753,14 +728,6 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2606161",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2606161/icon_2606161.png"
-    },
-    "hc1:2606163": {
-      "code": "2606163",
-      "title": "名探偵プリキュア！ スウィートパールドール２",
-      "release_date": "2026/11/23発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2606163",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2606163/icon_2606163.png"
     },
     "hc1:2606164": {
       "code": "2606164",
@@ -938,14 +905,6 @@
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607116/icon_2607116.png"
     },
-    "hc1:2607122": {
-      "code": "2607122",
-      "title": "ドラゴンクエスト ミニパペットぬいぐるみコレクションVol.",
-      "release_date": "2026/11/22発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2607122",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2607122/icon_2607122.png"
-    },
     "hc1:2607124": {
       "code": "2607124",
       "title": "びっくらたまご ONEPIECEエルバフ編",
@@ -953,14 +912,6 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2607124",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607124/icon_2607124.png"
-    },
-    "hc1:2607127": {
-      "code": "2607127",
-      "title": "びっくらたまご SKZOO Twinkle Sleepy T",
-      "release_date": "2026/11/23発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2607127",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2607127/icon_2607127.png"
     },
     "hc1:2607128": {
       "code": "2607128",
@@ -978,14 +929,6 @@
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607129/icon_2607129.png"
     },
-    "hc1:2607149": {
-      "code": "2607149",
-      "title": "ブックマークスタイルチャーム たまごっち",
-      "release_date": "2026/11/23発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2607149",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2607149/icon_2607149.png"
-    },
     "hc1:2607152": {
       "code": "2607152",
       "title": "サンリオキャラクターズキミに夢中☆アイドルのお守り風キーホル",
@@ -1002,22 +945,6 @@
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607153/icon_2607153.png"
     },
-    "hc1:2607155": {
-      "code": "2607155",
-      "title": "にふぉるめーしょん 僕のヒーローアカデミア ウルトラシールウ",
-      "release_date": "2026/11/23発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2607155",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2607155/icon_2607155.png"
-    },
-    "hc1:2607156": {
-      "code": "2607156",
-      "title": "プロジェクトセカイ カラフルステージ！ feat. 初音ミクビス",
-      "release_date": "2026/11/23発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2607156",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2607156/icon_2607156.png"
-    },
     "hc1:2607157": {
       "code": "2607157",
       "title": "アオのハコ カードソフトクッキー",
@@ -1025,14 +952,6 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2607157",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2607157/icon_2607157.png"
-    },
-    "hc1:2607160": {
-      "code": "2607160",
-      "title": "矢沢あい ラバークリップ付きグミ",
-      "release_date": "2026/11/23発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2607160",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2607160/icon_2607160.png"
     },
     "hc1:2607161": {
       "code": "2607161",
@@ -1250,14 +1169,6 @@
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2608115/icon_2608115.png"
     },
-    "hc1:2608116": {
-      "code": "2608116",
-      "title": "キャラポトレ バレーボール男子日本代表ー２ー",
-      "release_date": "2026/11/23発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2608116",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2608116/icon_2608116.png"
-    },
     "hc1:2608117": {
       "code": "2608117",
       "title": "ちょこぶろっくしーるカミオジャパンキャラクターズ",
@@ -1281,14 +1192,6 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2608126",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2608126/icon_2608126.png"
-    },
-    "hc1:2608131": {
-      "code": "2608131",
-      "title": "サンリオぽってりゆらゆらおきあがりこぼし",
-      "release_date": "2026/11/20発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2608131",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2608131/icon_2608131.png"
     },
     "hc1:2608132": {
       "code": "2608132",
@@ -1330,22 +1233,6 @@
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2608153/icon_2608153.png"
     },
-    "hc1:2608195": {
-      "code": "2608195",
-      "title": "ブックマークコレクション 妖怪ウォッチ♪ 2枚入り",
-      "release_date": "2026/11/23発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2608195",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2608195/icon_2608195.png"
-    },
-    "hc1:2608196": {
-      "code": "2608196",
-      "title": "チケットライクコレクション サンリオキャラクターズ ステンド",
-      "release_date": "2026/11/23発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2608196",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2608196/icon_2608196.png"
-    },
     "hc1:2608197": {
       "code": "2608197",
       "title": "ブックマークコレクション 刀剣乱舞ONLINE 御伴散歩 1",
@@ -1361,30 +1248,6 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2608198",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2608198/icon_2608198.png"
-    },
-    "hc1:2608201": {
-      "code": "2608201",
-      "title": "ぺたしきしーるコレクション アイカツ！アンコール 3枚入り",
-      "release_date": "2026/11/23発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2608201",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2608201/icon_2608201.png"
-    },
-    "hc1:2608229": {
-      "code": "2608229",
-      "title": "サンエックスユニバース フォトカードキーホルダー",
-      "release_date": "2026/11/23発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2608229",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2608229/icon_2608229.png"
-    },
-    "hc1:2608230": {
-      "code": "2608230",
-      "title": "サンリオキャラクターズ ウィンターアクリルスタンド",
-      "release_date": "2026/11/23発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2608230",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2608230/icon_2608230.png"
     },
     "hc1:2608234": {
       "code": "2608234",
@@ -1457,14 +1320,6 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2609049",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2609049/icon_2609049.png"
-    },
-    "hc1:2609056": {
-      "code": "2609056",
-      "title": "ちいかわmitamemo チケットファイル2【再販】",
-      "release_date": "2026/11/20発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2609056",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2609056/icon_2609056.png"
     },
     "hc1:2609062": {
       "code": "2609062",
@@ -1649,22 +1504,6 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2610051",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2610051/icon_2610051.png"
-    },
-    "hc1:2610057": {
-      "code": "2610057",
-      "title": "ディズニー星ちょこクランチ",
-      "release_date": "2026/11/23発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2610057",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2610057/icon_2610057.png"
-    },
-    "hc1:2610058": {
-      "code": "2610058",
-      "title": "薬屋のひとりごと シールグミ",
-      "release_date": "2026/11/23発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2610058",
-      "section": "hc1",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2610058/icon_2610058.png"
     },
     "hc1:2610059": {
       "code": "2610059",
@@ -2345,14 +2184,6 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2610019",
       "section": "hc7",
       "image_url": "https://syokugan-ohkoku.com/shohin/2610019/icon_2610019.png"
-    },
-    "hc7:2610159": {
-      "code": "2610159",
-      "title": "ほねほねザウルスジュラシックワールド",
-      "release_date": "2026/11/17発売",
-      "url": "https://syokugan-ohkoku.com/item.php?code=2610159",
-      "section": "hc7",
-      "image_url": "https://syokugan-ohkoku.com/shohin/2610159/icon_2610159.png"
     },
     "hc7:2610160": {
       "code": "2610160",
