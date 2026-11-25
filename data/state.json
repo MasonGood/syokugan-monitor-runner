@@ -374,6 +374,7 @@
     "2608200",
     "2608201",
     "2608202",
+    "2608204",
     "2608228",
     "2608229",
     "2608230",
@@ -1318,6 +1319,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2608198",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2608198/icon_2608198.png"
+    },
+    "hc1:2608204": {
+      "code": "2608204",
+      "title": "アニメちいかわマグネットコレクションガム",
+      "release_date": "2026/11/26発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2608204",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2608204/icon_2608204.png"
     },
     "hc1:2608234": {
       "code": "2608234",
