@@ -520,7 +520,9 @@
     "2611077",
     "2611078",
     "2611115",
-    "2611129"
+    "2611129",
+    "2611168",
+    "2611170"
   ],
   "active_restock_codes": [
     "2307025",
@@ -1784,6 +1786,22 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2611129",
       "section": "hc3",
       "image_url": "https://syokugan-ohkoku.com/shohin/2611129/icon_2611129.png"
+    },
+    "hc3:2611168": {
+      "code": "2611168",
+      "title": "名探偵コナン Wフォトカードコレクション4 〔2026/12/8締切〕",
+      "release_date": "2027/03/29発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611168",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611168/icon_2611168.png"
+    },
+    "hc3:2611170": {
+      "code": "2611170",
+      "title": "カードキャプターさくら スタンドロッド＆チャーム 〔2026/12/8締切〕",
+      "release_date": "2027/05/31発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611170",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611170/icon_2611170.png"
     },
     "hc7:2307025": {
       "code": "2307025",
