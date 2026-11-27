@@ -521,6 +521,7 @@
     "2611078",
     "2611115",
     "2611129",
+    "2611167",
     "2611168",
     "2611170"
   ],
@@ -1786,6 +1787,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2611129",
       "section": "hc3",
       "image_url": "https://syokugan-ohkoku.com/shohin/2611129/icon_2611129.png"
+    },
+    "hc3:2611167": {
+      "code": "2611167",
+      "title": "鬼滅の刃 日輪刀コレクション3 〔2026/12/2締切〕",
+      "release_date": "2027/02/22発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611167",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611167/icon_2611167.png"
     },
     "hc3:2611168": {
       "code": "2611168",
