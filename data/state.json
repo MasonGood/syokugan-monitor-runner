@@ -332,6 +332,7 @@
     "2608115",
     "2608116",
     "2608117",
+    "2608118",
     "2608124",
     "2608126",
     "2608131",
@@ -399,6 +400,7 @@
     "2609047",
     "2609048",
     "2609049",
+    "2609054",
     "2609056",
     "2609062",
     "2609073",
@@ -520,7 +522,31 @@
     "2611077",
     "2611078",
     "2611115",
+    "2611121",
+    "2611122",
+    "2611123",
+    "2611124",
+    "2611125",
+    "2611126",
+    "2611127",
     "2611129",
+    "2611135",
+    "2611136",
+    "2611137",
+    "2611138",
+    "2611139",
+    "2611140",
+    "2611141",
+    "2611142",
+    "2611145",
+    "2611147",
+    "2611148",
+    "2611149",
+    "2611150",
+    "2611151",
+    "2611152",
+    "2611153",
+    "2611159",
     "2611167",
     "2611168",
     "2611170"
@@ -1236,6 +1262,14 @@
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2608117/icon_2608117.png"
     },
+    "hc1:2608118": {
+      "code": "2608118",
+      "title": "すらいどきゃん JOCHUM",
+      "release_date": "2026/11/30発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2608118",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2608118/icon_2608118.png"
+    },
     "hc1:2608124": {
       "code": "2608124",
       "title": "petadoll HUNTER×HUNTER グリードアイラ",
@@ -1404,6 +1438,14 @@
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2609049/icon_2609049.png"
     },
+    "hc1:2609054": {
+      "code": "2609054",
+      "title": "くじポン! Hello Kitty SURPRISE MIX",
+      "release_date": "2026/12発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2609054",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2609054/icon_2609054.png"
+    },
     "hc1:2609062": {
       "code": "2609062",
       "title": "びっくらたまご ちいかわ リボンなみんな",
@@ -1411,6 +1453,22 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2609062",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2609062/icon_2609062.png"
+    },
+    "hc1:2609073": {
+      "code": "2609073",
+      "title": "サンエックスユニバースキャラクリアフォト",
+      "release_date": "2026/12発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2609073",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2609073/icon_2609073.png"
+    },
+    "hc1:2609074": {
+      "code": "2609074",
+      "title": "ポケモンブロマイドガムメガエボリューション！",
+      "release_date": "2026/12/17発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2609074",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2609074/icon_2609074.png"
     },
     "hc1:2609075": {
       "code": "2609075",
@@ -1483,6 +1541,14 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2609088",
       "section": "hc1",
       "image_url": "https://syokugan-ohkoku.com/shohin/2609088/icon_2609088.png"
+    },
+    "hc1:2609089": {
+      "code": "2609089",
+      "title": "トイ・ストーリー5クリアカードコレクションガム",
+      "release_date": "2026/12/17発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2609089",
+      "section": "hc1",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2609089/icon_2609089.png"
     },
     "hc1:2609159": {
       "code": "2609159",
@@ -1748,6 +1814,62 @@
       "section": "hc3",
       "image_url": "https://syokugan-ohkoku.com/shohin/2611078/icon_2611078.png"
     },
+    "hc3:2611121": {
+      "code": "2611121",
+      "title": "にふぉるめーしょん 鬼滅の刃ディフォルメシールウエハース 17 〔2026/12/8締切〕",
+      "release_date": "2027/03発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611121",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611121/icon_2611121.png"
+    },
+    "hc3:2611122": {
+      "code": "2611122",
+      "title": "にふぉるめーしょん HUNTER×HUNTER シールウエハー10 〔2026/12/8締切〕",
+      "release_date": "2027/03発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611122",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611122/icon_2611122.png"
+    },
+    "hc3:2611123": {
+      "code": "2611123",
+      "title": "舞台『⼑剣乱舞』⼗周年記念 カードソフトクッキー 前編 〔2026/12/8締切〕",
+      "release_date": "2027/03発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611123",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611123/icon_2611123.png"
+    },
+    "hc3:2611124": {
+      "code": "2611124",
+      "title": "舞台『刀剣乱舞』⼗周年記念 カードソフトクッキー 後編 〔2026/12/8締切〕",
+      "release_date": "2027/03発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611124",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611124/icon_2611124.png"
+    },
+    "hc3:2611125": {
+      "code": "2611125",
+      "title": "ホロライブ シールソフトクッキー vol.1 〔2026/12/8締切〕",
+      "release_date": "2027/03発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611125",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611125/icon_2611125.png"
+    },
+    "hc3:2611126": {
+      "code": "2611126",
+      "title": "アイカツ！シリーズ カードグミ 〔2026/12/8締切〕",
+      "release_date": "2027/03発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611126",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611126/icon_2611126.png"
+    },
+    "hc3:2611127": {
+      "code": "2611127",
+      "title": "M.LEAGUE ステッカーつきビスケット 〔2026/12/8締切〕",
+      "release_date": "2027/03発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611127",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611127/icon_2611127.png"
+    },
     "hc3:2611129": {
       "code": "2611129",
       "title": "CONVERGE MOTION ウルトラマン16 〔2026/12/8締切〕",
@@ -1755,6 +1877,142 @@
       "url": "https://syokugan-ohkoku.com/item.php?code=2611129",
       "section": "hc3",
       "image_url": "https://syokugan-ohkoku.com/shohin/2611129/icon_2611129.png"
+    },
+    "hc3:2611135": {
+      "code": "2611135",
+      "title": "にふぉるめーしょん ゴールデンカムイ 金塊争奪シールウエハー 〔2026/12/8締切〕",
+      "release_date": "2027/04発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611135",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611135/icon_2611135.png"
+    },
+    "hc3:2611136": {
+      "code": "2611136",
+      "title": "矢沢あい ツインウエハース２ 〔2026/12/8締切〕",
+      "release_date": "2027/04発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611136",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611136/icon_2611136.png"
+    },
+    "hc3:2611137": {
+      "code": "2611137",
+      "title": "サンリオキャラクターズ ウエハース14 〔2026/12/8締切〕",
+      "release_date": "2027/04発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611137",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611137/icon_2611137.png"
+    },
+    "hc3:2611138": {
+      "code": "2611138",
+      "title": "ナルミヤキャラクターズ ぷくっとデコレーションカードシール 〔2026/12/8締切〕",
+      "release_date": "2027/04発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611138",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611138/icon_2611138.png"
+    },
+    "hc3:2611139": {
+      "code": "2611139",
+      "title": "たまもりしーるプチ トレーグミ 〔2026/12/8締切〕",
+      "release_date": "2027/04発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611139",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611139/icon_2611139.png"
+    },
+    "hc3:2611140": {
+      "code": "2611140",
+      "title": "ショコラクト ちいかわ 〔2026/12/8締切〕",
+      "release_date": "2027/04発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611140",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611140/icon_2611140.png"
+    },
+    "hc3:2611141": {
+      "code": "2611141",
+      "title": "ブルーロック 缶バッジ付きビスケット vol.1 〔2026/12/8締切〕",
+      "release_date": "2027/04発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611141",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611141/icon_2611141.png"
+    },
+    "hc3:2611142": {
+      "code": "2611142",
+      "title": "ウルトラマン俱楽部スナック 〔2026/12/8締切〕",
+      "release_date": "2027/04発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611142",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611142/icon_2611142.png"
+    },
+    "hc3:2611145": {
+      "code": "2611145",
+      "title": "ブルーロック 缶バッジ付きビスケット vol.２ 〔2026/12/8締切〕",
+      "release_date": "2027/05発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611145",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611145/icon_2611145.png"
+    },
+    "hc3:2611147": {
+      "code": "2611147",
+      "title": "どこでもいっしょ それってムネキュン？マスコット＆グミ 〔2026/12/8締切〕",
+      "release_date": "2027/05発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611147",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611147/icon_2611147.png"
+    },
+    "hc3:2611148": {
+      "code": "2611148",
+      "title": "たまごっち ダブルチャームビスケット 〔2026/12/8締切〕",
+      "release_date": "2027/05発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611148",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611148/icon_2611148.png"
+    },
+    "hc3:2611149": {
+      "code": "2611149",
+      "title": "たまごっち おかしなたまごボーロっち パッケージチャームつ 〔2026/12/8締切〕",
+      "release_date": "2027/05発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611149",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611149/icon_2611149.png"
+    },
+    "hc3:2611150": {
+      "code": "2611150",
+      "title": "サンリオキャラクターズ ラムネポットチャーム 〔2026/12/8締切〕",
+      "release_date": "2027/05発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611150",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611150/icon_2611150.png"
+    },
+    "hc3:2611151": {
+      "code": "2611151",
+      "title": "MOBILITY JOINT GUNDAM VOL.14 〔2026/12/8締切〕",
+      "release_date": "2027/05発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611151",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611151/icon_2611151.png"
+    },
+    "hc3:2611152": {
+      "code": "2611152",
+      "title": "SMP ALTERNATIVE DESTINY 暴太郎戦隊ドンブラザーズ 〔2026/12/8締切〕",
+      "release_date": "2027/05発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611152",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611152/icon_2611152.png"
+    },
+    "hc3:2611153": {
+      "code": "2611153",
+      "title": "リンクトラベラーズ01：ANOTHER COLOR 〔2026/12/8締切〕",
+      "release_date": "2027/05発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611153",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611153/icon_2611153.png"
+    },
+    "hc3:2611159": {
+      "code": "2611159",
+      "title": "▼カップケーキケース サンリオキャラクターズ 〔2026/12/8締切〕",
+      "release_date": "2027/06発売",
+      "url": "https://syokugan-ohkoku.com/item.php?code=2611159",
+      "section": "hc3",
+      "image_url": "https://syokugan-ohkoku.com/shohin/2611159/icon_2611159.png"
     },
     "hc3:2611167": {
       "code": "2611167",
